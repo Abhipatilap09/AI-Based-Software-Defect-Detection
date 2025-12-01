@@ -1,0 +1,1843 @@
+Feature,Importance
+"Github mirror of Gadgetbridge - A free and cloudless replacement for your gadget vendors' closed source Android applications. Supports Pebble, Mi Band, Liveview, HPlus and more._A library for debugging android databases and shared preferences - Make Debugging Great Again",0.048545390816684186
+"Github mirror of Gadgetbridge - A free and cloudless replacement for your gadget vendors' closed source Android applications. Supports Pebble, Mi Band, Liveview, HPlus and more._Open source Old School RuneScape client",0.04661759551349456
+Freeyourgadget_runelite,0.045566070802663866
+Freeyourgadget_amitshekhariitbhu,0.04346302138100245
+"activity post processing,activity/health,android integrations/notifications,bug,charts,device amazfit bip,device amazfit cor,device h30,device hplus,device liveview,device mi,device mi2,device mi3,device no.1 f1,device pace,device pebble,device pebble 2,device request,device watch 9,discussion,documentation,duplicate,enhancement,feature request,help wanted,invalid,needs work,no feedback,not a bug,one of the 1000 issues about disconnection,pairing/connecting,potentially fixed / needs confirmation,question,research,security,task,user interface / UX,wontfix_Hacktoberfest,bug,clues,discord,discussion,duplicate,enhancement,feature-request,good-for-first-contribution,gpu,help wanted,internal,invalid,item-stats,jagex-bug,jvm-bug,loot-tracker,needs-information,regression,skill-calc,skybox,wontfix,worldmap",0.04276200490711532
+app/src/main/java/nodomain/freeyourgadget/gadgetbridge/model/DeviceType.java_debug-db/src/main/java/com/amitshekhar/utils/DatabaseHelper.java,0.03645285664213109
+"activity post processing,activity/health,android integrations/notifications,bug,charts,device amazfit bip,device amazfit cor,device h30,device hplus,device liveview,device mi,device mi2,device mi3,device no.1 f1,device pace,device pebble,device pebble 2,device request,device watch 9,discussion,documentation,duplicate,enhancement,feature request,help wanted,invalid,needs work,no feedback,not a bug,one of the 1000 issues about disconnection,pairing/connecting,potentially fixed / needs confirmation,question,research,security,task,user interface / UX,wontfix_bug,duplicate,enhancement,help wanted,invalid,question,wontfix",0.03487556957588503
+ece0f094eb56219ae5188dcd37b90590a9f4029d_b6775a1f619e29659b2d32fd1f606b3f228fbabf,0.03434980722046968
+000f1ab4780fc9460975791c52597f7c04e15be7_b47765c53a822e025e509fe9bed8956797337ba5,0.032772520154223626
+000f1ab4780fc9460975791c52597f7c04e15be7_26c95c7629e5433d8e0c1feb4b6af8a96563c492,0.03119523308797757
+"/*  Copyright (C) 2015-2018 Andreas Shimokawa, Carsten Pfeiffer, Daniele
+    Gobbetti, João Paulo Barraca, José Rebelo, Kranz, ladbsoft, maxirnilian,
+    protomors, Quallenauge, Sami Alaoui, tiparega, Vadim Kaushan
+
+    This file is part of Gadgetbridge.
+
+    Gadgetbridge is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Gadgetbridge is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+package nodomain.freeyourgadget.gadgetbridge.model;
+
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
+
+/**
+ * For every supported device, a device type constant must exist.
+ *
+ * Note: they key of every constant is stored in the DB, so it is fixed forever,
+ * and may not be changed.
+ */
+public enum DeviceType {
+    UNKNOWN(-1, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_unknown),
+    PEBBLE(1, R.drawable.ic_device_pebble, R.drawable.ic_device_pebble_disabled, R.string.devicetype_pebble),
+    MIBAND(10, R.drawable.ic_device_miband, R.drawable.ic_device_miband_disabled, R.string.devicetype_miband),
+    MIBAND2(11, R.drawable.ic_device_miband2, R.drawable.ic_device_miband2_disabled, R.string.devicetype_miband2),
+    AMAZFITBIP(12, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_amazfit_bip),
+    AMAZFITCOR(13, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_amazfit_cor),
+    MIBAND3(14, R.drawable.ic_device_miband2, R.drawable.ic_device_miband2_disabled, R.string.devicetype_miband3),
+    VIBRATISSIMO(20, R.drawable.ic_device_lovetoy, R.drawable.ic_device_lovetoy_disabled, R.string.devicetype_vibratissimo),
+    LIVEVIEW(30, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_liveview),
+    HPLUS(40, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_hplus),
+    MAKIBESF68(41, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_makibes_f68),
+    EXRIZUK8(42, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_exrizu_k8),
+    Q8(43, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_q8),
+    NO1F1(50, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_no1_f1),
+    TECLASTH30(60, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_teclast_h30),
+    XWATCH(70, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_xwatch),
+    ZETIME(80, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_mykronoz_zetime),
+    ID115(90, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_id115),
+    WATCH9(100, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_watch9),
+    ROIDMI(100, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi),
+    ROIDMI3(102, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi3),
+    TEST(1000, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_test);
+
+    private final int key;
+    @DrawableRes
+    private final int defaultIcon;
+    @DrawableRes
+    private final int disabledIcon;
+    @StringRes
+    private final int name;
+
+    DeviceType(int key, int defaultIcon, int disabledIcon, int name) {
+        this.key = key;
+        this.defaultIcon = defaultIcon;
+        this.disabledIcon = disabledIcon;
+        this.name = name;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public boolean isSupported() {
+        return this != UNKNOWN;
+    }
+
+    public static DeviceType fromKey(int key) {
+        for (DeviceType type : values()) {
+            if (type.key == key) {
+                return type;
+            }
+        }
+        return DeviceType.UNKNOWN;
+    }
+
+    @StringRes
+    public int getName() {
+        return name;
+    }
+
+    @DrawableRes
+    public int getIcon() {
+        return defaultIcon;
+    }
+
+    @DrawableRes
+    public int getDisabledIcon() {
+        return disabledIcon;
+    }
+}
+_/*
+ *
+ *  *    Copyright (C) 2016 Amit Shekhar
+ *  *    Copyright (C) 2011 Android Open Source Project
+ *  *
+ *  *    Licensed under the Apache License, Version 2.0 (the ""License"");
+ *  *    you may not use this file except in compliance with the License.
+ *  *    You may obtain a copy of the License at
+ *  *
+ *  *        http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  *    Unless required by applicable law or agreed to in writing, software
+ *  *    distributed under the License is distributed on an ""AS IS"" BASIS,
+ *  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  *    See the License for the specific language governing permissions and
+ *  *    limitations under the License.
+ *
+ */
+
+package com.amitshekhar.server;
+
+/**
+ * Created by amitshekhar on 15/11/16.
+ */
+
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.amitshekhar.model.Response;
+import com.amitshekhar.utils.Constants;
+import com.amitshekhar.utils.PrefUtils;
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class ClientServer implements Runnable {
+
+    private static final String TAG = ""SimpleWebServer"";
+
+    /**
+     * The port number we listen to
+     */
+    private final int mPort;
+
+    /**
+     * {@link AssetManager} for loading files to serve.
+     */
+    private final AssetManager mAssets;
+
+    /**
+     * True if the server is running.
+     */
+    private boolean mIsRunning;
+
+    /**
+     * The {@link ServerSocket} that we listen to.
+     */
+    private ServerSocket mServerSocket;
+
+
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
+    private File mDatabaseDir;
+    private Gson mGson;
+    private boolean isDbOpenned;
+
+    /**
+     * WebServer constructor.
+     */
+    public ClientServer(Context context, int port) {
+        mPort = port;
+        mAssets = context.getResources().getAssets();
+        mContext = context;
+        mGson = new Gson();
+        getDatabaseDir();
+    }
+
+    /**
+     * This method starts the web server listening to the specified port.
+     */
+    public void start() {
+        mIsRunning = true;
+        new Thread(this).start();
+    }
+
+    /**
+     * This method stops the web server
+     */
+    public void stop() {
+        try {
+            mIsRunning = false;
+            if (null != mServerSocket) {
+                mServerSocket.close();
+                mServerSocket = null;
+            }
+        } catch (IOException e) {
+            Log.e(TAG, ""Error closing the server socket."", e);
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            mServerSocket = new ServerSocket(mPort);
+            while (mIsRunning) {
+                Socket socket = mServerSocket.accept();
+                handle(socket);
+                socket.close();
+            }
+        } catch (SocketException e) {
+            // The server was stopped; ignore.
+        } catch (IOException e) {
+            Log.e(TAG, ""Web server error."", e);
+        }
+    }
+
+    /**
+     * Respond to a request from a client.
+     *
+     * @param socket The client socket.
+     * @throws IOException
+     */
+    private void handle(Socket socket) throws IOException {
+        BufferedReader reader = null;
+        PrintStream output = null;
+        try {
+            String route = null;
+
+            // Read HTTP headers and parse out the route.
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String line;
+            while (!TextUtils.isEmpty(line = reader.readLine())) {
+                if (line.startsWith(""GET /"")) {
+                    int start = line.indexOf('/') + 1;
+                    int end = line.indexOf(' ', start);
+                    route = line.substring(start, end);
+                    break;
+                }
+            }
+
+            // Output stream that we send the response to
+            output = new PrintStream(socket.getOutputStream());
+
+            if (route == null || route.isEmpty()) {
+                route = ""index.html"";
+            }
+
+            byte[] bytes;
+
+            if (route.startsWith(""getAllDataFromTheTable"")) {
+                String query = null;
+
+                if (route.contains(""?tableName="")) {
+                    query = route.substring(route.indexOf(""="") + 1, route.length());
+                }
+
+                Response response;
+
+                if (isDbOpenned) {
+                    String sql = ""SELECT * FROM "" + query;
+                    response = query(sql);
+                } else {
+                    response = getAllPrefData(query);
+                }
+
+                String data = mGson.toJson(response);
+                bytes = data.getBytes();
+
+            } else if (route.startsWith(""query"")) {
+                String query = null;
+                if (route.contains(""?query="")) {
+                    query = route.substring(route.indexOf(""="") + 1, route.length());
+                }
+
+                Response response;
+
+                try {
+                    query = java.net.URLDecoder.decode(query, ""UTF-8"");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                String first = query.split("" "")[0].toLowerCase();
+
+                if (first.equals(""select"")) {
+                    response = query(query);
+                } else {
+                    response = exec(query);
+                }
+
+                String data = mGson.toJson(response);
+                bytes = data.getBytes();
+
+            } else if (route.startsWith(""getDbList"")) {
+                Response response = getDBList();
+                String data = mGson.toJson(response);
+                bytes = data.getBytes();
+            } else if (route.startsWith(""getTableList"")) {
+                String database = null;
+                if (route.contains(""?database="")) {
+                    database = route.substring(route.indexOf(""="") + 1, route.length());
+                }
+
+                Response response;
+
+                if (Constants.APP_SHARED_PREFERENCES.equals(database)) {
+                    response = getAllPrefTableName();
+                    closeDatabase();
+                } else {
+                    openDatabase(database);
+                    response = getAllTableName();
+                }
+
+                String data = mGson.toJson(response);
+                bytes = data.getBytes();
+            } else {
+                bytes = loadContent(route);
+            }
+
+
+            if (null == bytes) {
+                writeServerError(output);
+                return;
+            }
+
+            // Send out the content.
+            output.println(""HTTP/1.0 200 OK"");
+            output.println(""Content-Type: "" + detectMimeType(route));
+            output.println(""Content-Length: "" + bytes.length);
+            output.println();
+            output.write(bytes);
+            output.flush();
+        } finally {
+            if (null != output) {
+                output.close();
+            }
+            if (null != reader) {
+                reader.close();
+            }
+        }
+    }
+
+    /**
+     * Writes a server error response (HTTP/1.0 500) to the given output stream.
+     *
+     * @param output The output stream.
+     */
+    private void writeServerError(PrintStream output) {
+        output.println(""HTTP/1.0 500 Internal Server Error"");
+        output.flush();
+    }
+
+    /**
+     * Loads all the content of {@code fileName}.
+     *
+     * @param fileName The name of the file.
+     * @return The content of the file.
+     * @throws IOException
+     */
+    private byte[] loadContent(String fileName) throws IOException {
+        InputStream input = null;
+        try {
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            input = mAssets.open(fileName);
+            byte[] buffer = new byte[1024];
+            int size;
+            while (-1 != (size = input.read(buffer))) {
+                output.write(buffer, 0, size);
+            }
+            output.flush();
+            return output.toByteArray();
+        } catch (FileNotFoundException e) {
+            return null;
+        } finally {
+            if (null != input) {
+                input.close();
+            }
+        }
+    }
+
+    /**
+     * Detects the MIME type from the {@code fileName}.
+     *
+     * @param fileName The name of the file.
+     * @return A MIME type.
+     */
+    private String detectMimeType(String fileName) {
+        if (TextUtils.isEmpty(fileName)) {
+            return null;
+        } else if (fileName.endsWith("".html"")) {
+            return ""text/html"";
+        } else if (fileName.endsWith("".js"")) {
+            return ""application/javascript"";
+        } else if (fileName.endsWith("".css"")) {
+            return ""text/css"";
+        } else {
+            return ""application/octet-stream"";
+        }
+    }
+
+    private void getDatabaseDir() {
+        File root = mContext.getFilesDir().getParentFile();
+        File dbRoot = new File(root, ""/databases"");
+        mDatabaseDir = dbRoot;
+    }
+
+    private void openDatabase(String database) {
+        mDatabase = mContext.openOrCreateDatabase(database, 0, null);
+        isDbOpenned = true;
+    }
+
+    private void closeDatabase() {
+        mDatabase = null;
+        isDbOpenned = false;
+    }
+
+    private Response exec(String sql) {
+        Response response = new Response();
+        try {
+            mDatabase.execSQL(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.isSuccessful = false;
+            response.error = e.getMessage();
+            return response;
+        }
+        response.isSuccessful = true;
+        return response;
+    }
+
+    private Response query(String sql) {
+        Cursor cursor;
+        try {
+            cursor = mDatabase.rawQuery(sql, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Response msg = new Response();
+            msg.isSuccessful = false;
+            msg.error = e.getMessage();
+            return msg;
+        }
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            Response response = new Response();
+            response.isSuccessful = true;
+            List<String> columns = new ArrayList<>();
+            for (int i = 0; i < cursor.getColumnCount(); i++) {
+                String name = cursor.getColumnName(i);
+                columns.add(name);
+            }
+            response.columns = columns;
+
+            if (cursor.getCount() > 0) {
+                do {
+                    List row = new ArrayList();
+                    for (int i = 0; i < cursor.getColumnCount(); i++) {
+                        switch (cursor.getType(i)) {
+                            case Cursor.FIELD_TYPE_BLOB:
+                                row.add(cursor.getBlob(i));
+                                break;
+                            case Cursor.FIELD_TYPE_FLOAT:
+                                row.add(Float.valueOf(cursor.getFloat(i)));
+                                break;
+                            case Cursor.FIELD_TYPE_INTEGER:
+                                row.add(Integer.valueOf(cursor.getInt(i)));
+                                break;
+                            case Cursor.FIELD_TYPE_STRING:
+                                row.add(cursor.getString(i));
+                                break;
+                            default:
+                                row.add("""");
+                        }
+                    }
+                    response.rows.add(row);
+
+                } while (cursor.moveToNext());
+            }
+
+            return response;
+        } else {
+            Response response = new Response();
+            response.isSuccessful = false;
+            response.error = ""Cursor is null"";
+            return response;
+        }
+    }
+
+    public Response getDBList() {
+        Response response = new Response();
+        if (mDatabaseDir != null) {
+            for (String name : mDatabaseDir.list()) {
+                response.rows.add(name);
+            }
+        }
+        response.rows.add(Constants.APP_SHARED_PREFERENCES);
+        response.isSuccessful = true;
+        return response;
+    }
+
+    public Response getAllTableName() {
+        Response response = new Response();
+        Cursor c = mDatabase.rawQuery(""SELECT name FROM sqlite_master WHERE type='table'"", null);
+
+        if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
+                response.rows.add(c.getString(0));
+                c.moveToNext();
+            }
+        }
+        response.isSuccessful = true;
+        return response;
+    }
+
+    public Response getAllPrefTableName() {
+        Response response = new Response();
+        List<String> prefTags = PrefUtils.getSharedPreferenceTags(mContext);
+
+        for (String tag : prefTags) {
+            response.rows.add(tag);
+        }
+        response.isSuccessful = true;
+        return response;
+    }
+
+    public Response getAllPrefData(String tag) {
+        Response response = new Response();
+        response.isSuccessful = true;
+        response.columns.add(""Key"");
+        response.columns.add(""Value"");
+        SharedPreferences preferences = mContext.getSharedPreferences(tag, Context.MODE_PRIVATE);
+        Map<String, ?> allEntries = preferences.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            List row = new ArrayList();
+            row.add(entry.getKey());
+            row.add(entry.getValue().toString());
+            response.rows.add(row);
+        }
+        return response;
+    }
+
+}
+",0.02979320014020329
+"diff --git a/app/src/main/java/nodomain/freeyourgadget/gadgetbridge/model/DeviceType.java b/app/src/main/java/nodomain/freeyourgadget/gadgetbridge/model/DeviceType.java
+index 388a98a..de07347 100644
+--- a/app/src/main/java/nodomain/freeyourgadget/gadgetbridge/model/DeviceType.java
++++ b/app/src/main/java/nodomain/freeyourgadget/gadgetbridge/model/DeviceType.java
+@@ -49,8 +49,8 @@
+     ZETIME(80, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_mykronoz_zetime),
+     ID115(90, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_id115),
+     WATCH9(100, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_watch9),
+-    ROIDMI(100, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi),
+-    ROIDMI3(102, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi3),
++    ROIDMI(110, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi),
++    ROIDMI3(112, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi3),
+     TEST(1000, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_test);
+ 
+     private final int key;
+_diff --git a/runelite-api/src/main/java/net/runelite/api/Hitsplat.java b/runelite-api/src/main/java/net/runelite/api/Hitsplat.java
+index 861189f..cb8290d 100644
+--- a/runelite-api/src/main/java/net/runelite/api/Hitsplat.java
++++ b/runelite-api/src/main/java/net/runelite/api/Hitsplat.java
+@@ -49,11 +49,11 @@
+ 		 */
+ 		POISON,
+ 		/**
+-		 * Damage from venom (dark green).
++		 * Damage from venom (teal).
+ 		 */
+ 		VENOM,
+ 		/**
+-		 * Damage from disease (yellow).
++		 * Damage from disease (orange).
+ 		 */
+ 		DISEASE,
+ 		/**
+",0.02821591307395724
+Gadgetbridge_runelite,0.02576235541535226
+"/*  Copyright (C) 2015-2018 Andreas Shimokawa, Carsten Pfeiffer, Daniele
+    Gobbetti, João Paulo Barraca, José Rebelo, Kranz, ladbsoft, maxirnilian,
+    protomors, Quallenauge, Sami Alaoui, tiparega, Vadim Kaushan
+
+    This file is part of Gadgetbridge.
+
+    Gadgetbridge is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Gadgetbridge is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+package nodomain.freeyourgadget.gadgetbridge.model;
+
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
+
+/**
+ * For every supported device, a device type constant must exist.
+ *
+ * Note: they key of every constant is stored in the DB, so it is fixed forever,
+ * and may not be changed.
+ */
+public enum DeviceType {
+    UNKNOWN(-1, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_unknown),
+    PEBBLE(1, R.drawable.ic_device_pebble, R.drawable.ic_device_pebble_disabled, R.string.devicetype_pebble),
+    MIBAND(10, R.drawable.ic_device_miband, R.drawable.ic_device_miband_disabled, R.string.devicetype_miband),
+    MIBAND2(11, R.drawable.ic_device_miband2, R.drawable.ic_device_miband2_disabled, R.string.devicetype_miband2),
+    AMAZFITBIP(12, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_amazfit_bip),
+    AMAZFITCOR(13, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_amazfit_cor),
+    MIBAND3(14, R.drawable.ic_device_miband2, R.drawable.ic_device_miband2_disabled, R.string.devicetype_miband3),
+    VIBRATISSIMO(20, R.drawable.ic_device_lovetoy, R.drawable.ic_device_lovetoy_disabled, R.string.devicetype_vibratissimo),
+    LIVEVIEW(30, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_liveview),
+    HPLUS(40, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_hplus),
+    MAKIBESF68(41, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_makibes_f68),
+    EXRIZUK8(42, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_exrizu_k8),
+    Q8(43, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_q8),
+    NO1F1(50, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_no1_f1),
+    TECLASTH30(60, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_teclast_h30),
+    XWATCH(70, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_xwatch),
+    ZETIME(80, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_mykronoz_zetime),
+    ID115(90, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_id115),
+    WATCH9(100, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_watch9),
+    ROIDMI(100, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi),
+    ROIDMI3(102, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi3),
+    TEST(1000, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_test);
+
+    private final int key;
+    @DrawableRes
+    private final int defaultIcon;
+    @DrawableRes
+    private final int disabledIcon;
+    @StringRes
+    private final int name;
+
+    DeviceType(int key, int defaultIcon, int disabledIcon, int name) {
+        this.key = key;
+        this.defaultIcon = defaultIcon;
+        this.disabledIcon = disabledIcon;
+        this.name = name;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public boolean isSupported() {
+        return this != UNKNOWN;
+    }
+
+    public static DeviceType fromKey(int key) {
+        for (DeviceType type : values()) {
+            if (type.key == key) {
+                return type;
+            }
+        }
+        return DeviceType.UNKNOWN;
+    }
+
+    @StringRes
+    public int getName() {
+        return name;
+    }
+
+    @DrawableRes
+    public int getIcon() {
+        return defaultIcon;
+    }
+
+    @DrawableRes
+    public int getDisabledIcon() {
+        return disabledIcon;
+    }
+}
+_/*
+ *
+ *  *    Copyright (C) 2016 Amit Shekhar
+ *  *    Copyright (C) 2011 Android Open Source Project
+ *  *
+ *  *    Licensed under the Apache License, Version 2.0 (the ""License"");
+ *  *    you may not use this file except in compliance with the License.
+ *  *    You may obtain a copy of the License at
+ *  *
+ *  *        http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  *    Unless required by applicable law or agreed to in writing, software
+ *  *    distributed under the License is distributed on an ""AS IS"" BASIS,
+ *  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  *    See the License for the specific language governing permissions and
+ *  *    limitations under the License.
+ *
+ */
+
+package com.amitshekhar.utils;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.amitshekhar.model.Response;
+import com.amitshekhar.model.RowDataRequest;
+import com.amitshekhar.model.TableDataResponse;
+import com.amitshekhar.model.UpdateRowResponse;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by amitshekhar on 06/02/17.
+ */
+
+public class DatabaseHelper {
+
+    private DatabaseHelper() {
+        // This class in not publicly instantiable
+    }
+
+    public static Response getAllTableName(SQLiteDatabase database) {
+        Response response = new Response();
+        Cursor c = database.rawQuery(""SELECT name FROM sqlite_master WHERE type='table'"", null);
+        if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
+                response.rows.add(c.getString(0));
+                c.moveToNext();
+            }
+        }
+        c.close();
+        response.isSuccessful = true;
+        try {
+            response.dbVersion = database.getVersion();
+        } catch (Exception ignore) {
+
+        }
+        return response;
+    }
+
+    public static TableDataResponse getTableData(SQLiteDatabase db, String selectQuery, String tableName) {
+
+        TableDataResponse tableData = new TableDataResponse();
+        tableData.isSelectQuery = true;
+        if (tableName == null) {
+            tableName = getTableName(selectQuery);
+        }
+
+        if (tableName != null) {
+            final String pragmaQuery = ""PRAGMA table_info("" + tableName + "")"";
+            tableData.tableInfos = getTableInfo(db, pragmaQuery);
+        }
+
+        tableData.isEditable = tableName != null && tableData.tableInfos != null;
+
+        Cursor cursor;
+        try {
+            cursor = db.rawQuery(selectQuery, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            tableData.isSuccessful = false;
+            tableData.errorMessage = e.getMessage();
+            return tableData;
+        }
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            // setting tableInfo when tableName is not known and making
+            // it non-editable also by making isPrimary true for all
+            if (tableData.tableInfos == null) {
+                tableData.tableInfos = new ArrayList<>();
+                for (int i = 0; i < cursor.getColumnCount(); i++) {
+                    TableDataResponse.TableInfo tableInfo = new TableDataResponse.TableInfo();
+                    tableInfo.title = cursor.getColumnName(i);
+                    tableInfo.isPrimary = true;
+                    tableData.tableInfos.add(tableInfo);
+                }
+            }
+
+            tableData.isSuccessful = true;
+            tableData.rows = new ArrayList<>();
+            if (cursor.getCount() > 0) {
+
+                do {
+                    List<TableDataResponse.ColumnData> row = new ArrayList<>();
+                    for (int i = 0; i < cursor.getColumnCount(); i++) {
+                        TableDataResponse.ColumnData columnData = new TableDataResponse.ColumnData();
+                        switch (cursor.getType(i)) {
+                            case Cursor.FIELD_TYPE_BLOB:
+                                columnData.dataType = DataType.TEXT;
+                                columnData.value = ConverterUtils.blobToString(cursor.getBlob(i));
+                                break;
+                            case Cursor.FIELD_TYPE_FLOAT:
+                                columnData.dataType = DataType.REAL;
+                                columnData.value = cursor.getDouble(i);
+                                break;
+                            case Cursor.FIELD_TYPE_INTEGER:
+                                columnData.dataType = DataType.INTEGER;
+                                columnData.value = cursor.getLong(i);
+                                break;
+                            case Cursor.FIELD_TYPE_STRING:
+                                columnData.dataType = DataType.TEXT;
+                                columnData.value = cursor.getString(i);
+                                break;
+                            default:
+                                columnData.dataType = DataType.TEXT;
+                                columnData.value = cursor.getString(i);
+                        }
+                        row.add(columnData);
+                    }
+                    tableData.rows.add(row);
+
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            return tableData;
+        } else {
+            tableData.isSuccessful = false;
+            tableData.errorMessage = ""Cursor is null"";
+            return tableData;
+        }
+
+    }
+
+    private static List<TableDataResponse.TableInfo> getTableInfo(SQLiteDatabase db, String pragmaQuery) {
+
+        Cursor cursor;
+        try {
+            cursor = db.rawQuery(pragmaQuery, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        if (cursor != null) {
+
+            List<TableDataResponse.TableInfo> tableInfoList = new ArrayList<>();
+
+            cursor.moveToFirst();
+
+            if (cursor.getCount() > 0) {
+                do {
+                    TableDataResponse.TableInfo tableInfo = new TableDataResponse.TableInfo();
+
+                    for (int i = 0; i < cursor.getColumnCount(); i++) {
+
+                        final String columnName = cursor.getColumnName(i);
+
+                        switch (columnName) {
+                            case Constants.PK:
+                                tableInfo.isPrimary = cursor.getInt(i) == 1;
+                                break;
+                            case Constants.NAME:
+                                tableInfo.title = cursor.getString(i);
+                                break;
+                            default:
+                        }
+
+                    }
+                    tableInfoList.add(tableInfo);
+
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            return tableInfoList;
+        }
+        return null;
+    }
+
+
+    public static UpdateRowResponse addRow(SQLiteDatabase db, String tableName,
+                                           List<RowDataRequest> rowDataRequests) {
+        UpdateRowResponse updateRowResponse = new UpdateRowResponse();
+
+        if (rowDataRequests == null || tableName == null) {
+            updateRowResponse.isSuccessful = false;
+            return updateRowResponse;
+        }
+
+        ContentValues contentValues = new ContentValues();
+
+        for (RowDataRequest rowDataRequest : rowDataRequests) {
+            if (Constants.NULL.equals(rowDataRequest.value)) {
+                rowDataRequest.value = null;
+            }
+
+            switch (rowDataRequest.dataType) {
+                case DataType.INTEGER:
+                    contentValues.put(rowDataRequest.title, Long.valueOf(rowDataRequest.value));
+                    break;
+                case DataType.REAL:
+                    contentValues.put(rowDataRequest.title, Double.valueOf(rowDataRequest.value));
+                    break;
+                case DataType.TEXT:
+                    contentValues.put(rowDataRequest.title, rowDataRequest.value);
+                    break;
+                default:
+                    contentValues.put(rowDataRequest.title, rowDataRequest.value);
+                    break;
+            }
+        }
+
+        db.insert(tableName, null, contentValues);
+        updateRowResponse.isSuccessful = true;
+        return updateRowResponse;
+
+    }
+
+
+    public static UpdateRowResponse updateRow(SQLiteDatabase db, String tableName, List<RowDataRequest> rowDataRequests) {
+
+        UpdateRowResponse updateRowResponse = new UpdateRowResponse();
+
+        if (rowDataRequests == null || tableName == null) {
+            updateRowResponse.isSuccessful = false;
+            return updateRowResponse;
+        }
+
+        ContentValues contentValues = new ContentValues();
+
+        String whereClause = null;
+        List<String> whereArgsList = new ArrayList<>();
+
+        for (RowDataRequest rowDataRequest : rowDataRequests) {
+            if (Constants.NULL.equals(rowDataRequest.value)) {
+                rowDataRequest.value = null;
+            }
+            if (rowDataRequest.isPrimary) {
+                if (whereClause == null) {
+                    whereClause = rowDataRequest.title + ""=? "";
+                } else {
+                    whereClause = ""and "" + rowDataRequest.title + ""=? "";
+                }
+                whereArgsList.add(rowDataRequest.value);
+            } else {
+                switch (rowDataRequest.dataType) {
+                    case DataType.INTEGER:
+                        contentValues.put(rowDataRequest.title, Long.valueOf(rowDataRequest.value));
+                        break;
+                    case DataType.REAL:
+                        contentValues.put(rowDataRequest.title, Double.valueOf(rowDataRequest.value));
+                        break;
+                    case DataType.TEXT:
+                        contentValues.put(rowDataRequest.title, rowDataRequest.value);
+                        break;
+                    default:
+                }
+            }
+        }
+
+        String[] whereArgs = new String[whereArgsList.size()];
+
+        for (int i = 0; i < whereArgsList.size(); i++) {
+            whereArgs[i] = whereArgsList.get(i);
+        }
+
+        db.update(tableName, contentValues, whereClause, whereArgs);
+        updateRowResponse.isSuccessful = true;
+        return updateRowResponse;
+    }
+
+
+    public static UpdateRowResponse deleteRow(SQLiteDatabase db, String tableName, List<RowDataRequest> rowDataRequests) {
+
+        UpdateRowResponse updateRowResponse = new UpdateRowResponse();
+
+        if (rowDataRequests == null || tableName == null) {
+            updateRowResponse.isSuccessful = false;
+            return updateRowResponse;
+        }
+
+
+        String whereClause = null;
+        List<String> whereArgsList = new ArrayList<>();
+
+        for (RowDataRequest rowDataRequest : rowDataRequests) {
+            if (Constants.NULL.equals(rowDataRequest.value)) {
+                rowDataRequest.value = null;
+            }
+            if (rowDataRequest.isPrimary) {
+                if (whereClause == null) {
+                    whereClause = rowDataRequest.title + ""=? "";
+                } else {
+                    whereClause = ""and "" + rowDataRequest.title + ""=? "";
+                }
+                whereArgsList.add(rowDataRequest.value);
+            }
+        }
+
+        if (whereArgsList.size() == 0) {
+            updateRowResponse.isSuccessful = true;
+            return updateRowResponse;
+        }
+
+        String[] whereArgs = new String[whereArgsList.size()];
+
+        for (int i = 0; i < whereArgsList.size(); i++) {
+            whereArgs[i] = whereArgsList.get(i);
+        }
+
+        db.delete(tableName, whereClause, whereArgs);
+        updateRowResponse.isSuccessful = true;
+        return updateRowResponse;
+    }
+
+
+    public static TableDataResponse exec(SQLiteDatabase database, String sql) {
+        TableDataResponse tableDataResponse = new TableDataResponse();
+        tableDataResponse.isSelectQuery = false;
+        try {
+            database.execSQL(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            tableDataResponse.isSuccessful = false;
+            tableDataResponse.errorMessage = e.getMessage();
+            return tableDataResponse;
+        }
+        tableDataResponse.isSuccessful = true;
+        return tableDataResponse;
+    }
+
+    private static String getTableName(String selectQuery) {
+        // TODO find tableName from query and also handle JOIN query
+        return null;
+    }
+
+}
+",0.025587101296880476
+ece0f094eb56219ae5188dcd37b90590a9f4029d_e276f16bc495a5247eeef954254084e41ff80146,0.022607781282860145
+Fix duplicated DeviceType key introduced by the #1179 rebase._https://i.imgur.com/q4r8kc5.png,0.02243252716438836
+"/*  Copyright (C) 2015-2018 Andreas Shimokawa, Carsten Pfeiffer, Daniele
+    Gobbetti, João Paulo Barraca, José Rebelo, Kranz, ladbsoft, maxirnilian,
+    protomors, Quallenauge, Sami Alaoui, tiparega, Vadim Kaushan
+
+    This file is part of Gadgetbridge.
+
+    Gadgetbridge is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Gadgetbridge is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+package nodomain.freeyourgadget.gadgetbridge.model;
+
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
+
+/**
+ * For every supported device, a device type constant must exist.
+ *
+ * Note: they key of every constant is stored in the DB, so it is fixed forever,
+ * and may not be changed.
+ */
+public enum DeviceType {
+    UNKNOWN(-1, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_unknown),
+    PEBBLE(1, R.drawable.ic_device_pebble, R.drawable.ic_device_pebble_disabled, R.string.devicetype_pebble),
+    MIBAND(10, R.drawable.ic_device_miband, R.drawable.ic_device_miband_disabled, R.string.devicetype_miband),
+    MIBAND2(11, R.drawable.ic_device_miband2, R.drawable.ic_device_miband2_disabled, R.string.devicetype_miband2),
+    AMAZFITBIP(12, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_amazfit_bip),
+    AMAZFITCOR(13, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_amazfit_cor),
+    MIBAND3(14, R.drawable.ic_device_miband2, R.drawable.ic_device_miband2_disabled, R.string.devicetype_miband3),
+    VIBRATISSIMO(20, R.drawable.ic_device_lovetoy, R.drawable.ic_device_lovetoy_disabled, R.string.devicetype_vibratissimo),
+    LIVEVIEW(30, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_liveview),
+    HPLUS(40, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_hplus),
+    MAKIBESF68(41, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_makibes_f68),
+    EXRIZUK8(42, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_exrizu_k8),
+    Q8(43, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_q8),
+    NO1F1(50, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_no1_f1),
+    TECLASTH30(60, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_teclast_h30),
+    XWATCH(70, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_xwatch),
+    ZETIME(80, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_mykronoz_zetime),
+    ID115(90, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_id115),
+    WATCH9(100, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_watch9),
+    ROIDMI(110, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi),
+    ROIDMI3(112, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi3),
+    TEST(1000, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_test);
+
+    private final int key;
+    @DrawableRes
+    private final int defaultIcon;
+    @DrawableRes
+    private final int disabledIcon;
+    @StringRes
+    private final int name;
+
+    DeviceType(int key, int defaultIcon, int disabledIcon, int name) {
+        this.key = key;
+        this.defaultIcon = defaultIcon;
+        this.disabledIcon = disabledIcon;
+        this.name = name;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public boolean isSupported() {
+        return this != UNKNOWN;
+    }
+
+    public static DeviceType fromKey(int key) {
+        for (DeviceType type : values()) {
+            if (type.key == key) {
+                return type;
+            }
+        }
+        return DeviceType.UNKNOWN;
+    }
+
+    @StringRes
+    public int getName() {
+        return name;
+    }
+
+    @DrawableRes
+    public int getIcon() {
+        return defaultIcon;
+    }
+
+    @DrawableRes
+    public int getDisabledIcon() {
+        return disabledIcon;
+    }
+}
+_/*
+ *
+ *  *    Copyright (C) 2016 Amit Shekhar
+ *  *    Copyright (C) 2011 Android Open Source Project
+ *  *
+ *  *    Licensed under the Apache License, Version 2.0 (the ""License"");
+ *  *    you may not use this file except in compliance with the License.
+ *  *    You may obtain a copy of the License at
+ *  *
+ *  *        http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  *    Unless required by applicable law or agreed to in writing, software
+ *  *    distributed under the License is distributed on an ""AS IS"" BASIS,
+ *  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  *    See the License for the specific language governing permissions and
+ *  *    limitations under the License.
+ *
+ */
+
+package com.amitshekhar.server;
+
+/**
+ * Created by amitshekhar on 15/11/16.
+ */
+
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.amitshekhar.model.Response;
+import com.amitshekhar.utils.Constants;
+import com.amitshekhar.utils.PrefUtils;
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class ClientServer implements Runnable {
+
+    private static final String TAG = ""SimpleWebServer"";
+
+    /**
+     * The port number we listen to
+     */
+    private final int mPort;
+
+    /**
+     * {@link AssetManager} for loading files to serve.
+     */
+    private final AssetManager mAssets;
+
+    /**
+     * True if the server is running.
+     */
+    private boolean mIsRunning;
+
+    /**
+     * The {@link ServerSocket} that we listen to.
+     */
+    private ServerSocket mServerSocket;
+
+
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
+    private File mDatabaseDir;
+    private Gson mGson;
+    private boolean isDbOpenned;
+
+    /**
+     * WebServer constructor.
+     */
+    public ClientServer(Context context, int port) {
+        mPort = port;
+        mAssets = context.getResources().getAssets();
+        mContext = context;
+        mGson = new Gson();
+        getDatabaseDir();
+    }
+
+    /**
+     * This method starts the web server listening to the specified port.
+     */
+    public void start() {
+        mIsRunning = true;
+        new Thread(this).start();
+    }
+
+    /**
+     * This method stops the web server
+     */
+    public void stop() {
+        try {
+            mIsRunning = false;
+            if (null != mServerSocket) {
+                mServerSocket.close();
+                mServerSocket = null;
+            }
+        } catch (IOException e) {
+            Log.e(TAG, ""Error closing the server socket."", e);
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            mServerSocket = new ServerSocket(mPort);
+            while (mIsRunning) {
+                Socket socket = mServerSocket.accept();
+                handle(socket);
+                socket.close();
+            }
+        } catch (SocketException e) {
+            // The server was stopped; ignore.
+        } catch (IOException e) {
+            Log.e(TAG, ""Web server error."", e);
+        }
+    }
+
+    /**
+     * Respond to a request from a client.
+     *
+     * @param socket The client socket.
+     * @throws IOException
+     */
+    private void handle(Socket socket) throws IOException {
+        BufferedReader reader = null;
+        PrintStream output = null;
+        try {
+            String route = null;
+
+            // Read HTTP headers and parse out the route.
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String line;
+            while (!TextUtils.isEmpty(line = reader.readLine())) {
+                if (line.startsWith(""GET /"")) {
+                    int start = line.indexOf('/') + 1;
+                    int end = line.indexOf(' ', start);
+                    route = line.substring(start, end);
+                    break;
+                }
+            }
+
+            // Output stream that we send the response to
+            output = new PrintStream(socket.getOutputStream());
+
+            if (route == null || route.isEmpty()) {
+                route = ""index.html"";
+            }
+
+            byte[] bytes;
+
+            if (route.startsWith(""getAllDataFromTheTable"")) {
+                String query = null;
+
+                if (route.contains(""?tableName="")) {
+                    query = route.substring(route.indexOf(""="") + 1, route.length());
+                }
+
+                Response response;
+
+                if (isDbOpenned) {
+                    String sql = ""SELECT * FROM "" + query;
+                    response = query(sql);
+                } else {
+                    response = getAllPrefData(query);
+                }
+
+                String data = mGson.toJson(response);
+                bytes = data.getBytes();
+
+            } else if (route.startsWith(""query"")) {
+                String query = null;
+                if (route.contains(""?query="")) {
+                    query = route.substring(route.indexOf(""="") + 1, route.length());
+                }
+
+                Response response;
+
+                try {
+                    query = java.net.URLDecoder.decode(query, ""UTF-8"");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                String first = query.split("" "")[0].toLowerCase();
+
+                if (first.equals(""select"")) {
+                    response = query(query);
+                } else {
+                    response = exec(query);
+                }
+
+                String data = mGson.toJson(response);
+                bytes = data.getBytes();
+
+            } else if (route.startsWith(""getDbList"")) {
+                Response response = getDBList();
+                String data = mGson.toJson(response);
+                bytes = data.getBytes();
+            } else if (route.startsWith(""getTableList"")) {
+                String database = null;
+                if (route.contains(""?database="")) {
+                    database = route.substring(route.indexOf(""="") + 1, route.length());
+                }
+
+                Response response;
+
+                if (Constants.APP_SHARED_PREFERENCES.equals(database)) {
+                    response = getAllPrefTableName();
+                    closeDatabase();
+                } else {
+                    openDatabase(database);
+                    response = getAllTableName();
+                }
+
+                String data = mGson.toJson(response);
+                bytes = data.getBytes();
+            } else {
+                bytes = loadContent(route);
+            }
+
+
+            if (null == bytes) {
+                writeServerError(output);
+                return;
+            }
+
+            // Send out the content.
+            output.println(""HTTP/1.0 200 OK"");
+            output.println(""Content-Type: "" + detectMimeType(route));
+            output.println(""Content-Length: "" + bytes.length);
+            output.println();
+            output.write(bytes);
+            output.flush();
+        } finally {
+            if (null != output) {
+                output.close();
+            }
+            if (null != reader) {
+                reader.close();
+            }
+        }
+    }
+
+    /**
+     * Writes a server error response (HTTP/1.0 500) to the given output stream.
+     *
+     * @param output The output stream.
+     */
+    private void writeServerError(PrintStream output) {
+        output.println(""HTTP/1.0 500 Internal Server Error"");
+        output.flush();
+    }
+
+    /**
+     * Loads all the content of {@code fileName}.
+     *
+     * @param fileName The name of the file.
+     * @return The content of the file.
+     * @throws IOException
+     */
+    private byte[] loadContent(String fileName) throws IOException {
+        InputStream input = null;
+        try {
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            input = mAssets.open(fileName);
+            byte[] buffer = new byte[1024];
+            int size;
+            while (-1 != (size = input.read(buffer))) {
+                output.write(buffer, 0, size);
+            }
+            output.flush();
+            return output.toByteArray();
+        } catch (FileNotFoundException e) {
+            return null;
+        } finally {
+            if (null != input) {
+                input.close();
+            }
+        }
+    }
+
+    /**
+     * Detects the MIME type from the {@code fileName}.
+     *
+     * @param fileName The name of the file.
+     * @return A MIME type.
+     */
+    private String detectMimeType(String fileName) {
+        if (TextUtils.isEmpty(fileName)) {
+            return null;
+        } else if (fileName.endsWith("".html"")) {
+            return ""text/html"";
+        } else if (fileName.endsWith("".js"")) {
+            return ""application/javascript"";
+        } else if (fileName.endsWith("".css"")) {
+            return ""text/css"";
+        } else {
+            return ""application/octet-stream"";
+        }
+    }
+
+    private void getDatabaseDir() {
+        File root = mContext.getFilesDir().getParentFile();
+        File dbRoot = new File(root, ""/databases"");
+        mDatabaseDir = dbRoot;
+    }
+
+    private void openDatabase(String database) {
+        mDatabase = mContext.openOrCreateDatabase(database, 0, null);
+        isDbOpenned = true;
+    }
+
+    private void closeDatabase() {
+        mDatabase = null;
+        isDbOpenned = false;
+    }
+
+    private Response exec(String sql) {
+        Response response = new Response();
+        try {
+            mDatabase.execSQL(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.isSuccessful = false;
+            response.error = e.getMessage();
+            return response;
+        }
+        response.isSuccessful = true;
+        return response;
+    }
+
+    private Response query(String sql) {
+        Cursor cursor;
+        try {
+            cursor = mDatabase.rawQuery(sql, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Response msg = new Response();
+            msg.isSuccessful = false;
+            msg.error = e.getMessage();
+            return msg;
+        }
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            Response response = new Response();
+            response.isSuccessful = true;
+            List<String> columns = new ArrayList<>();
+            for (int i = 0; i < cursor.getColumnCount(); i++) {
+                String name = cursor.getColumnName(i);
+                columns.add(name);
+            }
+            response.columns = columns;
+
+            if (cursor.getCount() > 0) {
+                do {
+                    List row = new ArrayList();
+                    for (int i = 0; i < cursor.getColumnCount(); i++) {
+                        switch (cursor.getType(i)) {
+                            case Cursor.FIELD_TYPE_BLOB:
+                                row.add(cursor.getBlob(i));
+                                break;
+                            case Cursor.FIELD_TYPE_FLOAT:
+                                row.add(Float.valueOf(cursor.getFloat(i)));
+                                break;
+                            case Cursor.FIELD_TYPE_INTEGER:
+                                row.add(Integer.valueOf(cursor.getInt(i)));
+                                break;
+                            case Cursor.FIELD_TYPE_STRING:
+                                row.add(cursor.getString(i));
+                                break;
+                            default:
+                                row.add("""");
+                        }
+                    }
+                    response.rows.add(row);
+
+                } while (cursor.moveToNext());
+            }
+
+            return response;
+        } else {
+            Response response = new Response();
+            response.isSuccessful = false;
+            response.error = ""Cursor is null"";
+            return response;
+        }
+    }
+
+    public Response getDBList() {
+        Response response = new Response();
+        if (mDatabaseDir != null && mDatabaseDir.list() != null) {
+            for (String name : mDatabaseDir.list()) {
+                response.rows.add(name);
+            }
+        }
+        response.rows.add(Constants.APP_SHARED_PREFERENCES);
+        response.isSuccessful = true;
+        return response;
+    }
+
+    public Response getAllTableName() {
+        Response response = new Response();
+        Cursor c = mDatabase.rawQuery(""SELECT name FROM sqlite_master WHERE type='table'"", null);
+
+        if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
+                response.rows.add(c.getString(0));
+                c.moveToNext();
+            }
+        }
+        response.isSuccessful = true;
+        return response;
+    }
+
+    public Response getAllPrefTableName() {
+        Response response = new Response();
+        List<String> prefTags = PrefUtils.getSharedPreferenceTags(mContext);
+
+        for (String tag : prefTags) {
+            response.rows.add(tag);
+        }
+        response.isSuccessful = true;
+        return response;
+    }
+
+    public Response getAllPrefData(String tag) {
+        Response response = new Response();
+        response.isSuccessful = true;
+        response.columns.add(""Key"");
+        response.columns.add(""Value"");
+        SharedPreferences preferences = mContext.getSharedPreferences(tag, Context.MODE_PRIVATE);
+        Map<String, ?> allEntries = preferences.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            List row = new ArrayList();
+            row.add(entry.getKey());
+            row.add(entry.getValue().toString());
+            response.rows.add(row);
+        }
+        return response;
+    }
+
+}
+",0.02243252716438836
+"/*  Copyright (C) 2015-2018 Andreas Shimokawa, Carsten Pfeiffer, Daniele
+    Gobbetti, João Paulo Barraca, José Rebelo, Kranz, ladbsoft, maxirnilian,
+    protomors, Quallenauge, Sami Alaoui, tiparega, Vadim Kaushan
+
+    This file is part of Gadgetbridge.
+
+    Gadgetbridge is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Gadgetbridge is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+package nodomain.freeyourgadget.gadgetbridge.model;
+
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
+
+/**
+ * For every supported device, a device type constant must exist.
+ *
+ * Note: they key of every constant is stored in the DB, so it is fixed forever,
+ * and may not be changed.
+ */
+public enum DeviceType {
+    UNKNOWN(-1, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_unknown),
+    PEBBLE(1, R.drawable.ic_device_pebble, R.drawable.ic_device_pebble_disabled, R.string.devicetype_pebble),
+    MIBAND(10, R.drawable.ic_device_miband, R.drawable.ic_device_miband_disabled, R.string.devicetype_miband),
+    MIBAND2(11, R.drawable.ic_device_miband2, R.drawable.ic_device_miband2_disabled, R.string.devicetype_miband2),
+    AMAZFITBIP(12, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_amazfit_bip),
+    AMAZFITCOR(13, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_amazfit_cor),
+    MIBAND3(14, R.drawable.ic_device_miband2, R.drawable.ic_device_miband2_disabled, R.string.devicetype_miband3),
+    VIBRATISSIMO(20, R.drawable.ic_device_lovetoy, R.drawable.ic_device_lovetoy_disabled, R.string.devicetype_vibratissimo),
+    LIVEVIEW(30, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_liveview),
+    HPLUS(40, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_hplus),
+    MAKIBESF68(41, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_makibes_f68),
+    EXRIZUK8(42, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_exrizu_k8),
+    Q8(43, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_q8),
+    NO1F1(50, R.drawable.ic_device_hplus, R.drawable.ic_device_hplus_disabled, R.string.devicetype_no1_f1),
+    TECLASTH30(60, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_teclast_h30),
+    XWATCH(70, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_xwatch),
+    ZETIME(80, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_mykronoz_zetime),
+    ID115(90, R.drawable.ic_device_h30_h10, R.drawable.ic_device_h30_h10_disabled, R.string.devicetype_id115),
+    WATCH9(100, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_watch9),
+    ROIDMI(100, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi),
+    ROIDMI3(102, R.drawable.ic_device_roidmi, R.drawable.ic_device_roidmi_disabled, R.string.devicetype_roidmi3),
+    TEST(1000, R.drawable.ic_device_default, R.drawable.ic_device_default_disabled, R.string.devicetype_test);
+
+    private final int key;
+    @DrawableRes
+    private final int defaultIcon;
+    @DrawableRes
+    private final int disabledIcon;
+    @StringRes
+    private final int name;
+
+    DeviceType(int key, int defaultIcon, int disabledIcon, int name) {
+        this.key = key;
+        this.defaultIcon = defaultIcon;
+        this.disabledIcon = disabledIcon;
+        this.name = name;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public boolean isSupported() {
+        return this != UNKNOWN;
+    }
+
+    public static DeviceType fromKey(int key) {
+        for (DeviceType type : values()) {
+            if (type.key == key) {
+                return type;
+            }
+        }
+        return DeviceType.UNKNOWN;
+    }
+
+    @StringRes
+    public int getName() {
+        return name;
+    }
+
+    @DrawableRes
+    public int getIcon() {
+        return defaultIcon;
+    }
+
+    @DrawableRes
+    public int getDisabledIcon() {
+        return disabledIcon;
+    }
+}
+_/*
+ * Copyright (c) 2018, Woox <https://github.com/wooxsolo>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ""AS IS"" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package net.runelite.api;
+
+import lombok.Getter;
+
+/**
+ * A hitsplat that has been applied to an {@link Actor}.
+ */
+public class Hitsplat
+{
+	/**
+	 * An enumeration of hitsplat types.
+	 */
+	public enum HitsplatType
+	{
+		/**
+		 * Blocking damage (blue).
+		 */
+		BLOCK,
+		/**
+		 * Taking damage (red).
+		 */
+		DAMAGE,
+		/**
+		 * Damage from poison (green).
+		 */
+		POISON,
+		/**
+		 * Damage from venom (dark green).
+		 */
+		VENOM,
+		/**
+		 * Damage from disease (yellow).
+		 */
+		DISEASE,
+		/**
+		 * Healing (purple).
+		 */
+		HEAL;
+
+		/**
+		 * Utility method that maps the type value to its respective
+		 * {@link Hitsplat} value.
+		 *
+		 * @param type the type value
+		 * @return hitsplat type
+		 */
+		public static HitsplatType fromInteger(int type)
+		{
+			switch (type)
+			{
+				case 0: return BLOCK;
+				case 1: return DAMAGE;
+				case 2: return POISON;
+				case 4: return DISEASE;
+				case 5: return VENOM;
+				case 6: return HEAL;
+			}
+			return null;
+		}
+	}
+
+	/**
+	 * The type of hitsplat.
+	 */
+	@Getter
+	private HitsplatType hitsplatType;
+
+	/**
+	 * The value displayed by the hitsplat.
+	 */
+	@Getter
+	private int amount;
+
+	/**
+	 * When the hitsplat will disappear.
+	 */
+	@Getter
+	private int disappearsOnGameCycle;
+
+	public Hitsplat(HitsplatType hitsplatType, int amount, int disappearsOnGameCycle)
+	{
+		this.hitsplatType = hitsplatType;
+		this.amount = amount;
+		this.disappearsOnGameCycle = disappearsOnGameCycle;
+	}
+}",0.022082018927444796
+20180902,0.021906764808973012
+"Fix duplicated DeviceType key introduced by the #1179 rebase..1_If RESET_CHATBOX_INPUT doesn't invoke runelite_callback resetChatboxInput because the script hash mismatches panels never get killed, so they a) break jagex inputs, and b) can be lost and not get unregistered, so they will record passwords on the login screen",0.020855240098142304
