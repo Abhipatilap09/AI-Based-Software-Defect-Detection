@@ -1,3 +1,5 @@
+ghprdata/*.csv filter=lfs diff=lfs merge=lfs -text
+ghprdata/*.sql filter=lfs diff=lfs merge=lfs -text
+outputs/ghprdata_summary_stats.csv filter=lfs diff=lfs merge=lfs -text
 ghprdata/ghprdata.csv filter=lfs diff=lfs merge=lfs -text
 ghprdata/ghprdata.sql filter=lfs diff=lfs merge=lfs -text
-outputs/ghprdata_summary_stats.csv filter=lfs diff=lfs merge=lfs -text
