@@ -142,6 +142,76 @@ Camel-1.0: Extreme class imbalance (96:4 ratio) creates minority class with n=14
 
 Post-preprocessing: 22 features (ANT, Camel) normalized to $\mu\approx 0$, $\sigma\approx 1$. Missing values: 0\% (imputation successful). Feature count: unchanged (22). Dataset sizes: ANT 745 (596 train, 149 test), Camel 339 (271 train, 68 test), GHPR 6,217 (4,973 train, 1,244 test).
 
+\subsubsection{Exploratory Data Analysis Figures}
+
+To complement the statistical summaries above, we include representative EDA visualizations for each dataset. The plots (generated during preprocessing and saved to the `outputs/` folder) provide immediate visual cues for stakeholders and help diagnose distributional issues, imbalance, and feature correlations.
+
+\begin{figure*}[ht]
+\centering
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/ant-1.7_target_distribution.png}
+        \caption{ANT-1.7: Target Distribution}
+        \label{fig:ant_target}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/camel-1.0_target_distribution.png}
+        \caption{Camel-1.0: Target Distribution}
+        \label{fig:camel_target}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/ghprdata_target_distribution.png}
+        \caption{GHPR: Target Distribution}
+        \label{fig:ghpr_target}
+    \end{subfigure}
+    \caption{Target class distributions (counts and percentages) for the three datasets. These plots illustrate the extreme imbalance in Camel-1.0 and the moderate imbalance in GHPR compared to ANT-1.7.}
+    \label{fig:target_distributions}
+\end{figure*}
+
+\begin{figure*}[ht]
+\centering
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/ant-1.7_correlation_heatmap.png}
+        \caption{ANT-1.7: Correlation Heatmap}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/camel-1.0_correlation_heatmap.png}
+        \caption{Camel-1.0: Correlation Heatmap}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/ghprdata_correlation_heatmap.png}
+        \caption{GHPR: Correlation Heatmap}
+    \end{subfigure}
+    \caption{Feature correlation heatmaps highlighting strong associations (e.g., RFC--CBO) and potential multicollinearity. These visual cues inform feature selection and model interpretability.}
+    \label{fig:corr_heatmaps}
+\end{figure*}
+
+\begin{figure*}[ht]
+\centering
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/ant-1.7_feature_histograms.png}
+        \caption{ANT-1.7: Feature Histograms}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/camel-1.0_feature_histograms.png}
+        \caption{Camel-1.0: Feature Histograms}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{outputs/ghprdata_feature_histograms.png}
+        \caption{GHPR: Feature Histograms}
+    \end{subfigure}
+    \caption{Representative histograms for top numeric features. These plots reveal skewness and heavy tails that motivated log-transforms and robust modeling choices.}
+    \label{fig:feature_histograms}
+\end{figure*}
+
 \section{Methodology}
 \label{sec:methodology}
 
@@ -561,6 +631,20 @@ RFC, LCOM, and CBO dominate importances across ANT and Camel. This pattern sugge
 
 \item \textbf{Cross-Project Transfer:} When starting new projects, initialize models trained on open-source datasets (ANT, Camel, etc.). Perform local calibration: collect a small set of labeled instances (50-100), fine-tune thresholds, and validate. This accelerates adoption while maintaining project-specific accuracy.
 \end{enumerate}
+
+\subsubsection*{Stakeholder Benefits and How Visualizations Help}
+
+The predictive models and associated visualizations deliver concrete, role-specific benefits across the engineering organization. The plots and EDA artifacts included in this report (see Figures~\ref{fig:target_distributions}--\ref{fig:feature_histograms}) are not only diagnostic but enable targeted actions:
+
+\begin{itemize}
+    \item \textbf{Developers:} Visual feature explanations (top features, histograms) quickly surface risky modules (high RFC/CBO/LOC). Developers can prioritize refactoring and unit tests for these modules; EDA plots make the signal visible in code review dashboards.
+    \item \textbf{QA / Test Engineers:} Target distribution and ROC plots identify high-probability defect regions and suggest where to allocate integration and regression testing effort, improving test-suite yield for defect discovery.
+    \item \textbf{Release Managers / Product Owners:} Confusion-matrix-driven cost calculations (see Section~\ref{subsec:ant}) quantify review overhead vs. defect-savings, enabling data-driven release decisions and risk-graded rollouts.
+    \item \textbf{Architects / Tech Leads:} Correlation heatmaps and feature importances reveal structural design weaknesses (coupling/cohesion hotspots) that merit architectural refactoring to reduce long-term maintenance and defect risk.
+    \item \textbf{Business / Stakeholders:} The ROI-style cost analysis converts model metrics into hours and cost savings, making the case for investment in predictive tooling and continuous model maintenance.
+\end{itemize}
+
+By surfacing these visual artifacts in team dashboards, the model output becomes actionable: triage lists, targeted test plans, and prioritized technical debt items can be generated automatically, closing the loop from prediction to remediation and showing measurable return on investment.
 
 \section{Conclusion}
 \label{sec:conclusion}
